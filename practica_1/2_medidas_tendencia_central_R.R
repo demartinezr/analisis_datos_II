@@ -4,6 +4,4 @@
 # Asignatura: Análisis de datos II
 # Profesor: Jhon Jairo Calderón – Diego E. Martinez Revelo
 #
-# Introducción al entorno R
-#
-#
+# Introducción al entorno R Studio (medidas de tendencia central)
