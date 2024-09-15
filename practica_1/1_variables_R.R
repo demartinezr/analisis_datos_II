@@ -4,7 +4,7 @@
 # Asignatura: Análisis de datos II
 # Profesor: Jhon Jairo Calderón – Diego E. Martinez Revelo
 #
-# Introducción al entorno R Studio (variables)
+# Introducción al entorno R Studio (variables y estructuras en R)
 #
 # Indique en el espacio _ como R studio resalta los objetos, las variables, 
 # los operadores, las funciones y los errores 
