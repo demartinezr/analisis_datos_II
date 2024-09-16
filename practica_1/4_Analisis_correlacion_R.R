@@ -188,36 +188,36 @@
     #
     par(mfrow = c(2, 2), mar = c(4, 4, 2, 2))
     hist(variables$Sepal.Length, probability = TRUE, main = "Histograma de Sepal.Length",
-         xlab = "Sepal Length", col = "lightblue", border = "black")
+         xlab = "Sepal Length", col = "lightblue", border = "black", ylim = c(0, 0.5))
     curve(dnorm(x, mean = mean(variables$Sepal.Length), sd = sd(variables$Sepal.Length)), 
           from = min(variables$Sepal.Length), to = max(variables$Sepal.Length), 
-          add = TRUE, col = "blue", lwd = 2)
+          add = TRUE, col = "blue", lwd = 3)
     hist(variables$Sepal.Width, probability = TRUE, main = "Histograma de Sepal.Width",
          xlab = "Sepal Width", col = "lightgreen", border = "black")
     curve(dnorm(x, mean = mean(variables$Sepal.Width), sd = sd(variables$Sepal.Width)), 
           from = min(variables$Sepal.Width), to = max(variables$Sepal.Width), 
-          add = TRUE, col = "blue", lwd = 2)
+          add = TRUE, col = "blue", lwd = 3)
     hist(variables$Petal.Length, probability = TRUE, main = "Histograma de Petal.Length",
          xlab = "Petal Length", col = "lightcoral", border = "black")
     curve(dnorm(x, mean = mean(variables$Petal.Length), sd = sd(variables$Petal.Length)), 
           from = min(variables$Petal.Length), to = max(variables$Petal.Length), 
-          add = TRUE, col = "blue", lwd = 2)
+          add = TRUE, col = "blue", lwd = 3)
     hist(variables$Petal.Width, probability = TRUE, main = "Histograma de Petal.Width",
          xlab = "Petal Width", col = "lightgoldenrod", border = "black")
     curve(dnorm(x, mean = mean(variables$Petal.Width), sd = sd(variables$Petal.Width)), 
           from = min(variables$Petal.Width), to = max(variables$Petal.Width), 
-          add = TRUE, col = "blue", lwd = 2)
+          add = TRUE, col = "blue", lwd = 3)
     #
     # q-q lots
     par(mfrow = c(2, 2), mar = c(4, 4, 2, 2))
     qqnorm(variables$Sepal.Length, main = "QQ-plot de Sepal.Length")
-    qqline(variables$Sepal.Length, col = "red")
+    qqline(variables$Sepal.Length, col = "red", lwd = 2)
     qqnorm(variables$Sepal.Width, main = "QQ-plot de Sepal.Width")
-    qqline(variables$Sepal.Width, col = "red")
+    qqline(variables$Sepal.Width, col = "red", lwd = 2)
     qqnorm(variables$Petal.Length, main = "QQ-plot de Petal.Length")
-    qqline(variables$Petal.Length, col = "red")
+    qqline(variables$Petal.Length, col = "red", lwd = 2)
     qqnorm(variables$Petal.Width, main = "QQ-plot de Petal.Width")
-    qqline(variables$Petal.Width, col = "red")
+    qqline(variables$Petal.Width, col = "red", lwd = 2)
     #
     # Pruebas de normalidad
     shapiro.test(variables$Sepal.Length)
