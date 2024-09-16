@@ -7,14 +7,14 @@
 # Introducción al entorno R Studio (variables y estructuras en R)
 #
 # Indique en el espacio _ como R studio resalta los objetos, las variables, 
-# los operadores, las funciones y los errores 
+  # los operadores, las funciones y los errores 
   x <- 10   # 
   y = "hola"  #
   z = x + 5 #
   mean(x 10)  #
-#
-# Asignación de valores a variables: <-, ->, =, assign ()
-#  
+  #
+  # Asignación de valores a variables: <-, ->, =, assign ()
+  #  
   # una forma
     a <- 6
     a
@@ -27,13 +27,14 @@
   # otra forma
     assign("d", 513.8)
     d
-  # que pasa cuando se ejecuta este objeto? escriba su obsrevación: _
+  # que pasa cuando se ejecutan los siguientes objetos X y x? 
+  # escriba su obsrevación: _
     x <- 2
     X 
     x
-#    
+  #    
 # Tipos de variables en R
-#
+  #
   # En los siguentes espacios _ escriba el tipo de variable en R
   # variable _
     x <- 10.5
@@ -65,9 +66,9 @@
     edad_factor <- as.factor(edad)
     print(edad_factor)
     class(edad_factor)
-#
+  #
 # Estrucuras de datos en R
-#    
+  #    
   # Vectores: Datos unidimensionales del mismo tipo
     # Ejemplo: Longitud de hojas de una planta (en cm)
     longitud_hojas <- c(5.1, 6.3, 4.8, 7.2, 5.9)
@@ -79,8 +80,8 @@
     # Filas: Especies, Columnas: Hábitats (Bosque, Pradera, Cultivo)
     conteo_especies <- matrix(c(10, 5, 2,
                                 8, 3, 4,
-                                6, 9, 7), 
-                              nrow = 3, byrow = TRUE)
+                                6, 9, 7),
+                                nrow = 3, byrow = TRUE)
     rownames(conteo_especies) <- c("Especie_A", "Especie_B", "Especie_C")
     colnames(conteo_especies) <- c("Bosque", "Pradera", "Cultivo")
     print(conteo_especies)
