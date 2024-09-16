@@ -135,7 +135,11 @@
       abline(lm(y ~ x), col = "red", lwd = 2)  # Línea de regresión ajustada
       plot(x_sample, y_sample, main = "Dispersión: Muestra Pequeña de Sepal.Length vs Sepal.Width",
          xlab = "Sepal Length", ylab = "Sepal Width", pch = 19, col = "darkgreen")
-      abline(lm(y_sample ~ x_sample), col = "red", lwd = 2)  # Línea de regresión ajustada  # Interpretación: Este gráfico muestra la relación en una muestra pequeña, destacando posibles variaciones en la correlación debido al tamaño reducido de la muestra.
+      abline(lm(y_sample ~ x_sample), col = "red", lwd = 2)  # Línea de regresión ajustada
+      #
+      # Interpretación: Este gráfico muestra la relación en una muestra pequeña, 
+      # destacando posibles variaciones en la correlación debido al tamaño 
+      # reducido de la muestra.
       #
     # Evaluación de la sensibilidad a la presencia de outliers
       x_outliers <- c(x, 8.5, 9.0, 9.5)  # Añadir valores atípicos en Sepal.Length
