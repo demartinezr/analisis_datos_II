@@ -8,6 +8,7 @@
 #
 # librerias
   library(nortest)
+  library(corrplot)
   #
 # Correlación simple
     #
@@ -211,13 +212,13 @@
     # q-q lots
     par(mfrow = c(2, 2), mar = c(4, 4, 2, 2))
     qqnorm(variables$Sepal.Length, main = "QQ-plot de Sepal.Length")
-    qqline(variables$Sepal.Length, col = "red", lwd = 2)
+    qqline(variables$Sepal.Length, col = "red", lwd = 3)
     qqnorm(variables$Sepal.Width, main = "QQ-plot de Sepal.Width")
-    qqline(variables$Sepal.Width, col = "red", lwd = 2)
+    qqline(variables$Sepal.Width, col = "red", lwd = 3)
     qqnorm(variables$Petal.Length, main = "QQ-plot de Petal.Length")
-    qqline(variables$Petal.Length, col = "red", lwd = 2)
+    qqline(variables$Petal.Length, col = "red", lwd = 3)
     qqnorm(variables$Petal.Width, main = "QQ-plot de Petal.Width")
-    qqline(variables$Petal.Width, col = "red", lwd = 2)
+    qqline(variables$Petal.Width, col = "red", lwd = 3)
     #
     # Pruebas de normalidad
     shapiro.test(variables$Sepal.Length)
@@ -236,6 +237,7 @@
     pearson_corr  # Matriz de correlación de Pearson
     r_pearson_corr <- pearson_corr^2
     print(r_pearson_corr)
+    corrplot(pearson_corr)
     #
     # Interpretación matriz de correlación:
     # La matriz de correlación muestra valores entre -1 y 1.
@@ -267,6 +269,7 @@
     spearman_corr  # Matriz de correlación de Spearman
     r_spearman_corr <- spearman_corr^2
     print(r_spearman_corr)
+    corrplot(spearman_corr)
     # Interpretación para Spearman:
     # Spearman mide la relación en términos de rangos y es más robusto frente a datos no normales.
     # Una correlación cercana a 1 o -1 sigue indicando relaciones fuertes (positivas o negativas), 
@@ -304,19 +307,21 @@
     #
     # Calcular correlación y matriz de varianza-covarianza para la muestra completa
     pearson_corr_full <- cor(variables, method = "pearson")
-    r_pearson_corr_full <- pearson_corr_full^2
+    corrplot(pearson_corr_full)
+        r_pearson_corr_full <- pearson_corr_full^2
     print(r_pearson_corr_full)
     cov_matrix_full <- cov(variables)
     print(cov_matrix_full)
     #
     # Calcular correlación y matriz de varianza-covarianza para la muestra pequeña
     pearson_corr_small <- cor(small_sample, method = "pearson")
+    corrplot(pearson_corr_small)
     r_pearson_corr_small  <- pearson_corr_small ^2
     print(r_pearson_corr_small )
     cov_matrix_small <- cov(small_sample)
     print(cov_matrix_small)
     #
-    # Configuración para gráficos en un solo panel
+    # Graficos parados
     pairs(variables, main = "Gráficos de Dispersión (Muestra Completa)",
           pch = 19, col = "blue")
     pairs(small_sample, main = "Gráficos de Dispersión (Muestra Pequeña)",
