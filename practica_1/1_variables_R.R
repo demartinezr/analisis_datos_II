@@ -6,6 +6,21 @@
 #
 # Introducción al entorno R Studio (variables y estructuras en R)
 #
+# Para crear un nuevo proyecto en RStudio:
+# En RStudio, ve a 'File' -> 'New Project' -> 'New Directory' -> 'New Project'.
+# Selecciona la carpeta donde se creará el proyecto y sigue las instrucciones.
+#
+# Consultar el directorio de trabajo actual
+  getwd()  # Muestra el directorio de trabajo en el que estás actualmente
+
+# Asignar un nuevo directorio de trabajo
+# Puedes establecer el directorio de trabajo a una carpeta específica usando setwd()
+# Cambia la ruta a la que necesites en tu sistema.
+  setwd("/ruta/a/tu/directorio")  # Cambia "/ruta/a/tu/directorio" a la ruta deseada
+#
+# Verifica si el directorio se cambió correctamente
+  getwd()  # Confirma que ahora estás en el nuevo directorio
+#
 # Indique en el espacio _ como R studio resalta los objetos, las variables, 
   # los operadores, las funciones y los errores 
   x <- 10   # 
@@ -112,6 +127,18 @@
     )
     print(captura_individuos)
     class(captura_individuos)
+    #
+    # Exportar como tabla (archivo de texto)
+    write.table(captura_individuos, file = "captura_individuos.txt", sep = "\t", row.names = FALSE)
+    #
+    # Exportar como CSV
+    write.csv(captura_individuos, file = "captura_individuos.csv", row.names = FALSE)
+    #
+    # Exportar como archivo RDS (formato nativo de R)
+    saveRDS(captura_individuos, file = "captura_individuos.rds")
+    #
+    # Para cargar el archivo RDS posteriormente puedes usar:
+    # captura_individuos_cargado <- readRDS("captura_individuos.rds")
     #
   # Listas: Datos heterogéneos, colecciones de objetos
     # Ejemplo: Lista que contiene información biológica variada
