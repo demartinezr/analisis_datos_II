@@ -237,7 +237,12 @@
     pearson_corr  # Matriz de correlación de Pearson
     r_pearson_corr <- pearson_corr^2
     print(r_pearson_corr)
-    corrplot(pearson_corr)
+    # Calcular p-valores para Pearson
+    p_values_pearson <- cor.mtest(variables, method = "pearson", conf.level = 0.95)$p
+    print(p_values_pearson)
+    # Gráfico de correlación de Pearson con p-valores
+    corrplot(pearson_corr, p.mat = p_values_pearson, sig.level = 0.05, insig = "blank", 
+             addCoef.col = "black", number.cex = 0.7, main = "Correlación de Pearson")
     #
     # Interpretación matriz de correlación:
     # La matriz de correlación muestra valores entre -1 y 1.
@@ -277,21 +282,17 @@
     # A diferencia de Pearson, Spearman es menos sensible a valores atípicos
     # y puede detectar relaciones no lineales.
     #
-    # Calcular la matriz de correlación de Pearson
-    pearson_corr_matrix <- cor(variables, method = "pearson")
-    cat("Matriz de Correlación de Pearson:\n")
-    print(pearson_corr_matrix)
-    #
-    # Interpretación de la matriz de varianza-covarianza (Pearson):
-    # La matriz de varianza-covarianza mide la dispersión conjunta de las variables.
-    # Los valores diagonales representan la varianza de cada variable individual,
-    # es decir, qué tanto se dispersan los datos alrededor de la media.
-    # Los valores fuera de la diagonal indican la covarianza entre pares de variables,
-    # que mide cómo varían juntas: un valor positivo indica que ambas variables tienden a
-    # aumentar o disminuir juntas, mientras que un valor negativo indica que cuando una variable
-    # aumenta, la otra tiende a disminuir.
-    # Por ejemplo, una covarianza alta entre Petal.Length y Petal.Width indica que estas dos
-    # variables tienden a aumentar o disminuir juntas, lo cual sugiere una relación directa.
+    # Matriz de varianza-covarianza para Spearman
+    spearman_cov_matrix <- cov(variables)  # No cambia, ya que cov() calcula varianza-covarianza
+    spearman_cov_matrix  # Matriz de varianza-covarianza
+    # 
+    p_values_spearman <- cor.mtest(variables, method = "spearman", conf.level = 0.95)$p
+    print(p_values_spearman)
+    corrplot(spearman_corr, p.mat = p_values_spearman, sig.level = 0.05, insig = "blank", 
+             addCoef.col = "black", number.cex = 0.7, main = "Correlación de Spearman")
+    # Matriz de varianza-covarianza para Spearman
+spearman_cov_matrix <- cov(variables)  # No cambia, ya que cov() calcula varianza-covarianza
+spearman_cov_matrix  # Matriz de varianza-covarianza
     # Gráficos de dispersión entre las variables
     pairs(variables, main = "Gráficos de Dispersión entre las Variables",
           pch = 19, col = "blue")
@@ -321,7 +322,7 @@
     cov_matrix_small <- cov(small_sample)
     print(cov_matrix_small)
     #
-    # Graficos parados
+    # Graficos pareados
     pairs(variables, main = "Gráficos de Dispersión (Muestra Completa)",
           pch = 19, col = "blue")
     pairs(small_sample, main = "Gráficos de Dispersión (Muestra Pequeña)",
