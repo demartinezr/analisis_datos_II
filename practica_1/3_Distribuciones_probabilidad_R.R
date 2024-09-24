@@ -31,13 +31,49 @@
   # Cálculo de probabilidad
   prob_height <- pnorm(55, mean = mu, sd = sigma) - pnorm(45, mean = mu, sd = sigma)
   #
-  # Gráfico para Distribución Normal
-  hist(heights, breaks = 30, main = "Alturas de Plantas (Normal)", xlab = "Altura (cm)", freq = FALSE, col = "lightgrey")
-  curve(dnorm(x, mean = mu, sd = sigma), add = TRUE, col = "blue", lwd = 6)
-  plot(density(heights), main = "Densidad de alturas", xlab = "Altura (cm)", ylab = "Densidad", col = "blue")
+  # Definir los límites
+  a <- 45
+  b <- 55
   #
+  # Calcular las probabilidades acumuladas
+  p_a <- pnorm(a, mean = mu, sd = sigma)  # P(X < 45)
+  p_b <- pnorm(b, mean = mu, sd = sigma)  # P(X < 55)
+  #
+  # Calcular la probabilidad de que X esté entre a y b
+  probabilidad_nor <- p_b - p_a
+  probabilidad_nor
+  #
+  # Gráfico para Distribución Normal
+  hist(heights, breaks = 30, main = "Alturas de Plantas (Normal)", 
+       xlab = "Altura (cm)", freq = FALSE, col = "lightgrey")
+  curve(dnorm(x, mean = mu, sd = sigma), add = TRUE, col = "blue", lwd = 6)
+  plot(density(heights), main = "Densidad de Alturas", 
+       xlab = "Altura (cm)", ylab = "Densidad", col = "blue")
+  abline(v = mu, col = "red", lwd = 2)
+  abline(v = mu - sigma, col = "green", lwd = 2, lty = 2)
+  abline(v = mu + sigma, col = "green", lwd = 2, lty = 2)
+  x <- seq(a, b, length = 100)
+  y <- dnorm(x, mean = mu, sd = sigma)
+  polygon(c(a, x, b), c(0, y, 0), col = rgb(1, 0, 0, 0.5), border = NA)
   # Espacio para la respuesta
   # Respuesta: Número 1:
+  #
+  # Nuevos parametros
+  mu_new <- 52.5      # Media de altura (cm) ajustada
+  sigma_new <- 5      # Desviación estándar (cm) ajustada
+  heights_new <- rnorm(100, mean = mu_new, sd = sigma_new)
+  prob_height_new <- pnorm(55, mean = mu_new, sd = sigma_new) - pnorm(45, mean = mu_new, sd = sigma_new)
+  hist(heights_new, breaks = 30, main = "Alturas de Plantas (Normal)", xlab = "Altura (cm)", freq = FALSE, col = "lightgrey")
+  curve(dnorm(x, mean = mu_new, sd = sigma_new), add = TRUE, col = "blue", lwd = 6)
+  plot(density(heights_new), main = "Densidad de Alturas", xlab = "Altura (cm)", ylab = "Densidad", col = "blue")
+  abline(v = mu_new, col = "red", lwd = 2)
+  abline(v = mu_new - sigma_new, col = "green", lwd = 2, lty = 2)
+  abline(v = mu_new + sigma_new, col = "green", lwd = 2, lty = 2)
+  a <- 45
+  b <- 55
+  x <- seq(a, b, length = 100)
+  y <- dnorm(x, mean = mu_new, sd = sigma_new)
+  polygon(c(a, x, b), c(0, y, 0), col = rgb(1, 0, 0, 0.5), border = NA)
   #
 # 2. Distribución Binomial
   #
@@ -61,6 +97,17 @@
   #
   # Cálculo de probabilidad
   prob_infectadas <- dbinom(12, size = n, prob = p)
+  #
+  n <- 30
+  k <- 12
+  p <- 0.4
+  #
+  # Coeficiente binomial
+  coef_binom <- choose(n, k)
+  #
+  # Probabilidad
+  probabilidad_bin <- coef_binom * (p^k) * ((1 - p)^(n - k))
+  probabilidad_bin
   #
   # Gráfico para Distribución Binomial
   hist(infectadas, breaks = 15, main = "Plantas infectadas (Binomial)", xlab = "Número de plantas infectadas", freq = FALSE, col = "lightgrey")
@@ -154,7 +201,7 @@
   datos_binomiales <- rbinom(100, size = n, prob = p)
   #
   # Gráfico
-  hist(datos_binomiales, breaks = seq(-0.5, n + 0.5, by = 1), probability = TRUE, col = "lightgrey", main = "Distribución Binomial", xlab = "Número de Éxitos")
+  hist(datos_binomiales, breaks = seq(-0.5, n + 0.5, by = 1), probability = TRUE, col = "lightgrey", main = "Distribución binomial", xlab = "Número de éxitos")
   x <- 0:n
   y <- dbinom(x, size = n, prob = p)
   lines(x, y, type = "h", lwd = 2, col = "blue")
@@ -171,7 +218,7 @@
   # Simulación
   datos_poisson <- rpois(100, lambda = lambda)
   # Gráfico
-  hist(datos_poisson, breaks = seq(-0.5, max(datos_poisson) + 0.5, by = 1), probability = TRUE, col = "lightgrey", main = "Distribución de Poisson", xlab = "Número de Eventos")
+  hist(datos_poisson, breaks = seq(-0.5, max(datos_poisson) + 0.5, by = 1), probability = TRUE, col = "lightgrey", main = "Distribución de Poisson", xlab = "Número de eventos")
   x <- 0:max(datos_poisson)
   y <- dpois(x, lambda = lambda)
   lines(x, y, type = "h", lwd = 2, col = "blue")
